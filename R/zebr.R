@@ -1,0 +1,7 @@
+#' @title An API wrapper for The Setup
+#' @description A small API wrapper for a small API! This makes \href{http://usesthis.com/}{The Setup}'s
+#' data and metadata available to useRs in a machine-readable format.
+#' 
+#' @seealso \code{\link{get_interviews}}, \code{\link{get_software}}, \code{\link{get_hardware}}
+#' @name zebr
+NULL

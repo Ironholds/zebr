@@ -1,0 +1,11 @@
+Package: zebr
+Type: Package
+Title: API client library for The Setup
+Version: 0.5.0
+Date: 2015-03-15
+Author: Oliver Keyes
+Maintainer: Oliver Keyes <ironholds@gmail.com>
+Description: The Setup has a tiny API. Now it has a tiny API client library.
+  Get interview, software and hardware (meta)data and so something fun with it!
+License: MIT + file LICENSE
+Imports: httr
