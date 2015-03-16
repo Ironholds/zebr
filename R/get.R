@@ -26,7 +26,7 @@
 #'@export
 get_interviews <- function(slugs = NULL, ...){
   if(is.null(slugs)){
-    return(get_content("interviews", ...))
+    return(get_content("interviews", ...)$interviews)
   }
   params <- paste0("interviews/", slugs)
   if(length(params) == 1){
@@ -37,12 +37,12 @@ get_interviews <- function(slugs = NULL, ...){
 
 #'@title get The Setup's software data
 #'@description retrieves either the metadata about software entries on The Setup, or the
-#'data to do with a particular piece of software, depending on the provided nput.
+#'data to do with a particular piece of software, depending on the provided input.
 #'
 #'@param item the name of the specific software; this can be found by looking at the
 #'software data in the return from \code{\link{get_interviews}}. Alternately, in the absence
 #'of any provided software names, the /meta/data associated with all software entries
-#'on The Setup will instead be returned, and this includes the names
+#'on The Setup will instead be returned, and this includes the names.
 #'
 #'@param ... further arguments to pass to httr's GET.
 #'
@@ -60,23 +60,23 @@ get_interviews <- function(slugs = NULL, ...){
 #'@export
 get_software <- function(item = NULL, ...){
   if(is.null(item)){
-    return(get_content("software", ...))
+    return(get_content("software", ...)$gear)
   }
   params <- paste0("software/", item)
   if(length(params) == 1){
-    return(get_content(params,...))
+    return(get_content(params,...)$gear)
   }
   return(lapply(params,get_content,...))
 }
 
 #'@title get The Setup's hardware data
 #'@description retrieves either the metadata about hardware entries on The Setup, or the
-#'data to do with a particular piece of hardware, depending on the provided nput.
+#'data to do with a particular piece of hardware, depending on the provided input.
 #'
 #'@param item the name of the specific hardware; this can be found by looking at the
 #'hardware data in the return from \code{\link{get_interviews}}. Alternately, in the absence
 #'of any provided hardware names, the /meta/data associated with all hardware entries
-#'on The Setup will instead be returned, and this includes the names
+#'on The Setup will instead be returned, and this includes the names.
 #'
 #'@param ... further arguments to pass to httr's GET.
 #'
@@ -95,11 +95,45 @@ get_software <- function(item = NULL, ...){
 #'@export
 get_hardware <- function(item = NULL, ...){
   if(is.null(item)){
-    return(get_content("hardware", ...))
+    return(get_content("hardware", ...)$gear)
   }
   params <- paste0("hardware/", item)
   if(length(params) == 1){
-    return(get_content(params,...))
+    return(get_content(params,...)$gear)
+  }
+  return(lapply(params,get_content,...))
+}
+
+#'@title get category metadata or data from The Setup
+#'@description retrieves either the metadata about the interviewee categories on
+#'The Setup, or the data from interviewees in particular categories, depending on
+#'the provided input.
+#'
+#'@param category the name(s) of the categories; this can be found by looking at the
+#'"categories" field in the return from \code{\link{get_interviews}}. Alternately, in the absence
+#'of any provided categories, the /meta/data associated with all categories
+#'on The Setup will instead be returned, and this includes the names.
+#'
+#'@param ... further arguments to pass to httr's GET.
+#'
+#'@seealso \code{\link{get_software}} and \code{\link{get_interviews}}, for similar functionality
+#'for hardware and full interviews.
+#'
+#'@examples
+#'#Get ALL the metadata!
+#'all_categories <- get_categories()
+#'
+#'#Get the information for actors
+#'actors <- get_categories("actor")
+#'
+#'@export
+get_categories <- function(category = NULL, ...){
+  if(is.null(category)){
+    return(get_content("interviews/categories", ...)$categories)
+  }
+  params <- paste0("interviews/categories/", category)
+  if(length(params) == 1){
+    return(get_content(params,...)$interviews)
   }
   return(lapply(params,get_content,...))
 }

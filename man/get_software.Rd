@@ -10,13 +10,13 @@ get_software(item = NULL, ...)
 \item{item}{the name of the specific software; this can be found by looking at the
 software data in the return from \code{\link{get_interviews}}. Alternately, in the absence
 of any provided software names, the /meta/data associated with all software entries
-on The Setup will instead be returned, and this includes the names}
+on The Setup will instead be returned, and this includes the names.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }
 \description{
 retrieves either the metadata about software entries on The Setup, or the
-data to do with a particular piece of software, depending on the provided nput.
+data to do with a particular piece of software, depending on the provided input.
 }
 \examples{
 #Get ALL the metadata!
